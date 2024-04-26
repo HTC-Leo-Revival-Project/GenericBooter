@@ -15,12 +15,12 @@
 #define MSM_PMEM_SMI_BASE        (MSM_SMI_BASE + 0x02500000)
 #define MSM_PMEM_SMI_SIZE        0x01B00000
 
-#define MSM_FB_BASE                0x02500000
+#define MSM_FB_BASE                0x02A00000
 #define MSM_FB_SIZE                0x00600000
 
 #define VIDEOBASE MSM_FB_BASE
-#define WIDTH 800
-#define HEIGHT 480
+#define WIDTH 480
+#define HEIGHT 800
 
 //Font taken from Minecraft.
 
@@ -59,7 +59,7 @@ int Tegra_framebuffer_drawCharacter(char mychar, int screenr, int screenc) {
 }
 
 void Tegra_console_init(void) {
-	memset((void*)0x02B00000, 0xcc, 800 * 480 * 2);
+	memset((void*)0x02B00000, 0xcc, 480 * 800 * 2);
 	Tegra_console_col = 0;
 	Tegra_console_row = 0;
 	Tegra_framebuffer_drawRect(0, 0, WIDTH, HEIGHT, 0);
