@@ -21,6 +21,7 @@
 #define VIDEOBASE MSM_FB_BASE
 #define WIDTH 480
 #define HEIGHT 800
+#define BPP 2 //4
 
 //Font taken from Minecraft.
 
@@ -32,14 +33,14 @@ int Tegra_console_col = 0;
 void Tegra_framebuffer_drawRect(int beginX, int beginY, int width, int height, int color) {
 	for (int y = beginY; y < beginY + height; y++) {
 		for (int x = beginX; x < beginX + width; x++) {
-			int loc = VIDEOBASE + (((y * WIDTH) + x) * 4);
+			int loc = VIDEOBASE + (((y * WIDTH) + x) * BPP);
 			*((int*) loc) = color;
 		}
 	}
 }
 
 void Tegra_framebuffer_setPixel(int x, int y, int color) {
-	int loc = VIDEOBASE + (((y * WIDTH) + x) * 4);
+	int loc = VIDEOBASE + (((y * WIDTH) + x) * BPP);
 	*((int*) loc) = color;
 }
 
@@ -59,7 +60,7 @@ int Tegra_framebuffer_drawCharacter(char mychar, int screenr, int screenc) {
 }
 
 void Tegra_console_init(void) {
-	memset((void*)0x02B00000, 0xcc, 480 * 800 * 2);
+	memset((void*)MSM_FB_BASE, 0xcc, WIDTH * HEIGHT * BPP);
 	Tegra_console_col = 0;
 	Tegra_console_row = 0;
 	Tegra_framebuffer_drawRect(0, 0, WIDTH, HEIGHT, 0);
