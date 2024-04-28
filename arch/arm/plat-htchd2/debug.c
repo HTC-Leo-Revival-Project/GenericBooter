@@ -30,7 +30,7 @@
 #include "genboot.h"
 #include <stdarg.h>
 #include <stdio.h>
-#include <msmuart.h>
+#include "msmuart.h"
 
 
 #define barrier()               __asm__ __volatile__("": : :"memory");
