@@ -52,8 +52,8 @@
 #define readl(a) (*REG32(a))
 
 
-extern void Tegra_console_init(void);
-extern void Tegra_console_putchar(char);
+extern void Msm_console_init(void);
+extern void Msm_console_putchar(char);
 
 /**
  * uart_putc
@@ -84,7 +84,7 @@ int uart_getchar(void)
 
 static void putc_wrapper(void *p, char c)
 {
-    Tegra_console_putchar(c);
+    Msm_console_putchar(c);
 }
 
 /**
@@ -95,7 +95,7 @@ static void putc_wrapper(void *p, char c)
 void init_debug(void)
 {
     init_printf(NULL, putc_wrapper);
-    Tegra_console_init();
+    Msm_console_init();
     printf("debug_init()\n");
 }
 
