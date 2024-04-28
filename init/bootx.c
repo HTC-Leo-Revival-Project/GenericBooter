@@ -545,6 +545,10 @@ boot_args *prepare_finalized_boot_args(void)
     return bootArgs;
 }
 
+void clearFB(void){
+    memset(0x02A00000,0,0x000bb800);
+}
+
 /**
  * start_darwin
  *
@@ -592,6 +596,10 @@ void start_darwin(void)
         ("kernel prepped at 0x%08x, transferring control out of booter now!\n",
          start_routine);
 
+
+    //hack to make logs of xnu visiable
+
+    clearFB();
     /* _locore_jump_to */
     _locore_jump_to(start_routine, (void *)args);
 
