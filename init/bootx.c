@@ -546,7 +546,7 @@ boot_args *prepare_finalized_boot_args(void)
 }
 
 void clearFB(void){
-    memset(0x02A00000,0,0x000bb800);
+    memset((void*) 0x02A00000,0,0x000bb800);
 }
 
 /**
